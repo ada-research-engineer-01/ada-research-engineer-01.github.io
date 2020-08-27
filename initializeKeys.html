@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>IDA - InitializeKeys</title>
+</head>
+<body class="c41">
+<span style="white-space: pre; font-family: Consolas,monospace;" class="c1 c41">
+  <span class="c24">_directory </span><span class="c9">= </span><span class="c8">+[Globals libraryDirectory]</span><span class="c9">(&amp;</span><span class="c8">OBJC_CLASS___Globals</span><span class="c9">, &quot;</span><span class="c25">libraryDirectory&quot;</span><span class="c9">);
+  </span><span class="c24">directory </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">_directory</span><span class="c9">);
+  </span><span class="c24">_path </span><span class="c9">= </span><span class="c8">objc_msgSend</span><span class="c9">(</span><span class="c24">directory</span><span class="c9">, &quot;</span><span class="c25">stringByAppendingPathComponent:&quot;</span><span class="c9">, </span><span class="c25">CFSTR(&quot;firstFileAddedHash&quot;)</span><span class="c9">);
+  </span><span class="c24">path </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">_path</span><span class="c9">);
+  </span><span class="c24">_error </span><span class="c9">= </span><span class="c32">0LL</span><span class="c9">;
+  </span><span class="c24">_fileContents </span><span class="c9">= </span><span class="c8">objc_msgSend</span><span class="c9">(&amp;</span><span class="c34">OBJC_CLASS___NSData</span><span class="c9">, &quot;</span><span class="c25">dataWithContentsOfFile:options:error:&quot;</span><span class="c9">, </span><span class="c24">path</span><span class="c9">, </span><span class="c32">0LL</span><span class="c9">, &amp;</span><span class="c24">_error</span><span class="c9">);
+  </span><span class="c24">fileContents </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">_fileContents</span><span class="c9">);
+  </span><span class="c24">error </span><span class="c9">= </span><span class="c8">objc_retain</span><span class="c9">(</span><span class="c24">_error</span><span class="c9">);
+  </span><span class="c8">objc_release</span><span class="c9">(</span><span class="c24">path</span><span class="c9">);
+  </span><span class="c8">objc_release</span><span class="c9">(</span><span class="c24">directory</span><span class="c9">);
+  </span><span class="c32">if </span><span class="c9">( </span><span class="c24">error </span><span class="c9">)
+  {
+    </span><span class="c24">v21 </span><span class="c9">= </span><span class="c8">+[BLYReachability sharedReachability]_13</span><span class="c9">(&amp;</span><span class="c8">OBJC_CLASS___Crashlytics</span><span class="c9">, &quot;</span><span class="c25">sharedInstance&quot;</span><span class="c9">);
+    </span><span class="c24">v22 </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">v21</span><span class="c9">);
+    </span><span class="c8">-[Crashlytics recordError:]</span><span class="c9">(</span><span class="c24">v22</span><span class="c9">, &quot;</span><span class="c25">recordError:&quot;</span><span class="c9">, </span><span class="c24">error</span><span class="c9">);
+    </span><span class="c24">v23 </span><span class="c9">= </span><span class="c24">v22</span><span class="c9">;
+  </span><span class="c24"></span><span class="c9">}
+  </span><span class="c32">else
+  </span><span class="c9">{
+    </span><span class="c24">v44 </span><span class="c9">= </span><span class="c8">+[LSLCrypt getUserPin:]</span><span class="c9">(&amp;</span><span class="c8">OBJC_CLASS___LSLCrypt</span><span class="c9">, &quot;</span><span class="c25">getUserPin:&quot;</span><span class="c9">, </span><span class="c32">0LL</span><span class="c9">);
+    </span><span class="c24">v45 </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">v44</span><span class="c9">);
+    </span><span class="c32">if </span><span class="c9">( </span><span class="c24">v45 </span><span class="c9">)
+    {
+      </span><span class="c24">_b64_data </span><span class="c9">= </span><span class="c8">objc_msgSend</span><span class="c9">(</span><span class="c24">fileContents</span><span class="c9">, &quot;</span><span class="c25">base64EncodedString&quot;</span><span class="c9">);
+      </span><span class="c24">b64_data </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">_b64_data</span><span class="c9">);
+      </span><span class="c24">v47 </span><span class="c9">= </span><span class="c8">+[LSLCrypt getLolWhat]</span><span class="c9">(&amp;</span><span class="c8">OBJC_CLASS___LSLCrypt</span><span class="c9">, &quot;</span><span class="c25">getLolWhat&quot;</span><span class="c9">);
+      </span><span class="c24">v48 </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">v47</span><span class="c9">);
+      </span><span class="c24">v78 </span><span class="c9">= </span><span class="c24">v45</span><span class="c9">;    </span><span class="c12">// This next line concatenates the 3 strings: b64_data, v48, v45
+      </span><span class="c24">_concat_result </span><span class="c9">= </span><span class="c8">objc_msgSend</span><span class="c9">(</span><span class="c24">b64_data</span><span class="c9">, &quot;</span><span class="c25">stringByAppendingFormat:&quot;</span><span class="c9">, </span><span class="c25">CFSTR(&quot;%@%@&quot;)</span><span class="c9">, </span><span class="c24">v48</span><span class="c9">, </span><span class="c24">v45</span><span class="c9">);
+      </span><span class="c24">concat_result </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">_concat_result</span><span class="c9">);
+      </span><span class="c24">_decoded </span><span class="c9">= </span><span class="c8">objc_msgSend</span><span class="c9">(&amp;</span><span class="c34">OBJC_CLASS___NSData</span><span class="c9">, &quot;</span><span class="c25">dataFromBase64String:&quot;</span><span class="c9">, </span><span class="c24">concat_result</span><span class="c9">);
+      </span><span class="c24">decoded </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">_decoded</span><span class="c9">);
+      </span><span class="c24">_hash </span><span class="c9">= </span><span class="c8">+[LSLCrypt sha256Hash:]</span><span class="c9">(&amp;</span><span class="c8">OBJC_CLASS___LSLCrypt</span><span class="c9">, &quot;</span><span class="c25">sha256Hash:&quot;</span><span class="c9">, </span><span class="c24">decoded</span><span class="c9">);
+      </span><span class="c24">hash </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">_hash</span><span class="c9">);
+      </span><span class="c24">_b64_hash </span><span class="c9">= </span><span class="c8">objc_msgSend</span><span class="c9">(</span><span class="c24">hash</span><span class="c9">, &quot;</span><span class="c25">base64EncodedString&quot;</span><span class="c9">);
+      </span><span class="c24">b64_hash </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">_b64_hash</span><span class="c9">);
+      </span><span class="c8">objc_release</span><span class="c9">(</span><span class="c24">hash</span><span class="c9">);
+      </span><span class="c8">objc_release</span><span class="c9">(</span><span class="c24">decoded</span><span class="c9">);
+      </span><span class="c8">objc_release</span><span class="c9">(</span><span class="c24">concat_result</span><span class="c9">);
+      </span><span class="c8">objc_release</span><span class="c9">(</span><span class="c24">v48</span><span class="c9">);
+      </span><span class="c8">objc_release</span><span class="c9">(</span><span class="c24">b64_data</span><span class="c9">);
+      </span><span class="c24">_decrypt_error </span><span class="c9">= </span><span class="c32">0LL</span><span class="c9">;
+      </span><span class="c24">_decrypt_result </span><span class="c9">= </span><span class="c8">+[RNDecryptor decryptData:withPassword:error:]</span><span class="c9">(
+                          &amp;</span><span class="c8">OBJC_CLASS___RNDecryptor</span><span class="c9">,
+                          &quot;</span><span class="c25">decryptData:withPassword:error:&quot;</span><span class="c9">,
+                          </span><span class="c24">v33</span><span class="c9">,
+                          </span><span class="c24">b64_hash</span><span class="c9">,
+                          &amp;</span><span class="c24">_decrypt_error</span><span class="c9">);
+      </span><span class="c24">decrypt_result </span><span class="c9">= </span><span class="c8">objc_retainAutoreleasedReturnValue</span><span class="c9">(</span><span class="c24">_decrypt_result</span><span class="c9">);
+      </span><span class="c24">error </span><span class="c9">= </span><span class="c8">objc_retain</span><span class="c9">(</span><span class="c24">_decrypt_error</span><span class="c9">);
+</span>   <span class="c9">}</span>
+<span class="c9"> }</span>
+</span><style type="text/css">
+/* line-fg-default */
+.c1 { color: blue; }
+/* line-bg-default */
+.c41 { background-color: white; }
+/* line-fg-libfunc */
+.c24 { color: #8080FF; }
+/* line-fg-punctuation */
+.c9 { color: navy; }
+/* line-fg-demangled-name */
+.c8 { color: blue; }
+/* line-fg-locvar */
+.c25 { color: green; }
+/* line-fg-keyword */
+.c32 { color: navy; }
+/* line-fg-import-name */
+.c34 { color: fuchsia; }
+/* line-fg-numlit-in-insn */
+.c12 { color: green; }
+</style></body></html>
